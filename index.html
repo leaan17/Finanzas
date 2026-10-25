@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f7f6" />
+    <meta name="description" content="Un resumen simple de tus tarjetas de crédito." />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Mis tarjetas</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#inicio" aria-label="Mis tarjetas, ir al inicio">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="4" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17" stroke="currentColor" stroke-width="1.8"/><path d="M7 15h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <span>mis tarjetas</span>
+        </a>
+        <button class="profile-button" aria-label="Perfil" title="Perfil">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.7"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </button>
+      </header>
+
+      <main id="inicio" class="main-content">
+        <section class="welcome-row" aria-labelledby="welcome-title">
+          <div>
+            <p class="eyebrow">TU RESUMEN</p>
+            <h1 id="welcome-title">¡Hola! <span aria-hidden="true">👋</span></h1>
+            <p class="welcome-copy">Así están tus tarjetas hoy.</p>
+          </div>
+          <span class="today-pill"><span class="status-dot"></span> Vista general</span>
+        </section>
+
+        <section class="overview-panel" aria-labelledby="debt-title">
+          <div class="overview-heading">
+            <div>
+              <p class="panel-kicker">EN TOTAL</p>
+              <h2 id="debt-title">Deuda en tarjetas</h2>
+            </div>
+            <span class="overview-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18m5-13.5c0-1.4-1.5-2.5-5-2.5s-5 1.1-5 2.7c0 4.6 10 1.7 10 6.1 0 1.6-1.6 2.7-5 2.7s-5-1.1-5-2.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+          <div class="debt-values" id="debt-values" aria-live="polite"></div>
+          <div class="overview-divider"></div>
+          <div class="overview-stats">
+            <div class="overview-stat">
+              <span>Límite total</span>
+              <strong id="limit-values"></strong>
+            </div>
+            <div class="overview-stat">
+              <span>Disponible</span>
+              <strong id="available-values"></strong>
+            </div>
+          </div>
+          <p class="overview-footnote">Tus montos se muestran por moneda.</p>
+        </section>
+
+        <section class="cards-section" id="mis-tarjetas" aria-labelledby="cards-title">
+          <div class="section-heading">
+            <div class="section-title-group">
+              <h2 id="cards-title">Mis tarjetas</h2>
+              <span class="card-count" id="card-count">0</span>
+            </div>
+            <button class="add-card-button" id="add-card-button" type="button">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>Agregar tarjeta</span>
+            </button>
+          </div>
+
+          <div id="cards-list" class="cards-list"></div>
+          <div id="empty-state" class="empty-state" hidden>
+            <div class="empty-illustration" aria-hidden="true">
+              <svg viewBox="0 0 72 72" fill="none"><rect x="9" y="17" width="54" height="38" rx="9" fill="#E6F2EC"/><path d="M9 29h54" stroke="#367A5C" stroke-width="4"/><path d="M18 44h14" stroke="#A3C8B3" stroke-width="4" stroke-linecap="round"/><circle cx="54" cy="48" r="10" fill="#D1E8DB"/><path d="M54 43v10m-5-5h10" stroke="#367A5C" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Tus tarjetas van a aparecer acá</h3>
+            <p>Agregá la primera para empezar a ver tus límites y disponibles.</p>
+            <button class="empty-add-button" id="empty-add-button" type="button">Agregar mi primera tarjeta</button>
+          </div>
+          <p class="privacy-note">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 10V7a6 6 0 0 1 12 0v3m-13 0h14v11H5V10Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            La información queda guardada en este dispositivo. No ingreses el número completo ni el código de seguridad de tu tarjeta.
+          </p>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Navegación principal">
+        <a class="nav-item active" href="#inicio" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3.5 10 8.5-7 8.5 7v9.2a1.8 1.8 0 0 1-1.8 1.8h-13a1.8 1.8 0 0 1-1.8-1.8V10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 21v-7h6v7" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <span>Inicio</span>
+        </a>
+        <a class="nav-item" href="#mis-tarjetas" data-coming-soon="Tarjetas">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M3 10h18M7 15h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <span>Tarjetas</span>
+        </a>
+        <button class="nav-add" id="nav-add-button" type="button" aria-label="Registrar una compra">
+          <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <small>Registrar</small>
+        </button>
+        <a class="nav-item" href="#" data-coming-soon="Cuotas">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M8 3v4m8-4v4M4 10h16m-11 4h.01M12 14h.01M15 14h.01M8 17h.01M12 17h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <span>Cuotas</span>
+        </a>
+        <a class="nav-item" href="#" data-coming-soon="Más opciones">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="5" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="19" cy="12" r="1.5" fill="currentColor"/></svg>
+          <span>Más</span>
+        </a>
+      </nav>
+    </div>
+
+    <dialog class="card-dialog" id="card-dialog" aria-labelledby="dialog-title">
+      <form id="card-form" method="dialog">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">TUS TARJETAS</p>
+            <h2 id="dialog-title">Agregar tarjeta</h2>
+          </div>
+          <button class="dialog-close" id="close-dialog" type="button" aria-label="Cerrar">×</button>
+        </div>
+        <input type="hidden" id="card-id" />
+        <label class="field-label" for="card-name">Nombre para identificarla</label>
+        <input class="text-input" id="card-name" name="name" type="text" placeholder="Ej.: Visa del banco" maxlength="36" required autocomplete="off" />
+        <div class="field-row">
+          <div class="field-column">
+            <label class="field-label" for="card-bank">Banco (opcional)</label>
+            <input class="text-input" id="card-bank" name="bank" type="text" placeholder="Ej.: Galicia" maxlength="30" autocomplete="off" />
+          </div>
+          <div class="field-column">
+            <label class="field-label" for="card-brand">Marca</label>
+            <select class="text-input" id="card-brand" name="brand">
+              <option>Visa</option><option>Mastercard</option><option>American Express</option><option>Otra</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-column">
+            <label class="field-label" for="card-currency">Moneda</label>
+            <select class="text-input" id="card-currency" name="currency"><option value="ARS">Pesos (ARS)</option><option value="USD">Dólares (USD)</option></select>
+          </div>
+          <div class="field-column">
+            <label class="field-label" for="card-limit">Límite total</label>
+            <input class="text-input" id="card-limit" name="limit" type="number" min="0" step="0.01" placeholder="0,00" required inputmode="decimal" />
+          </div>
+        </div>
+        <label class="field-label" for="card-debt">Deuda actual</label>
+        <input class="text-input" id="card-debt" name="debt" type="number" min="0" step="0.01" placeholder="0,00" value="0" required inputmode="decimal" />
+        <p class="form-hint">Podés actualizarla cuando quieras. Más adelante, las compras registradas se sumarán automáticamente.</p>
+        <div class="dialog-actions">
+          <button class="secondary-button" id="cancel-dialog" type="button">Cancelar</button>
+          <button class="primary-button" type="submit" id="save-card-button">Guardar tarjeta</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
+
