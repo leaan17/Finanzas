@@ -1,0 +1,15 @@
+{
+  "name": "Mis tarjetas",
+  "short_name": "Tarjetas",
+  "description": "Un resumen simple de tus tarjetas de crédito.",
+  "lang": "es-AR",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7f6",
+  "theme_color": "#f5f7f6",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
+
